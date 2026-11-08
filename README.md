@@ -60,7 +60,9 @@ The two files overlap from 2016-03-01 to 2023-12-29. Joint analyses of the curve
 Data handling rules:
 
 - The core curve panel uses the 3-month through 10-year tenors, which are complete for the full sample. The 1-month, 20-year, and 30-year tenors are evaluated on their available sub-samples.
-- Par yields are bootstrapped to continuously compounded zero yields before any short-rate or factor model is fitted.
+- Par yields are bootstrapped to continuously compounded zero yields before any short-rate or factor model is fitted. Par yields are treated as semiannual bond-equivalent yields, converted by $z = 2\ln(1 + y_{\text{BEY}}/2)$. Tenors of 1 year or less are treated as zero-coupon; longer tenors are interpolated onto a semiannual grid with a monotone cubic spline and bootstrapped from the par bond condition $1 = \tfrac{c}{2}\sum_{i} D(t_i) + D(T)$.
+- Forecasts at horizons of 1 month and longer use the last available trading day of each month.
+- Details of data gaps, holidays, and bootstrap checks are in [docs/Data_notes.md](docs/Data_notes.md).
 - The 3-month yield is the short-rate proxy for 1990 to 2023; EFFR and TGCR are used for 2016 to 2026. SOFR is reported but not used as the primary short rate because of month-end and quarter-end spikes (for example, September 2019).
 - Every forecast uses only information available at the prior close.
 
