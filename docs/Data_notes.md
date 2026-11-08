@@ -16,7 +16,7 @@ Conventions: par yields are semiannual bond-equivalent (BEY); zero yields are co
 
 - **Repricing check** (`results/tables/bootstrap_reprice_check.csv`): the zero curve reprices every input par yield above 1 year to within $10^{-12}$ bp. This only confirms the code is internally consistent, because the bootstrap fits the input tenors exactly by construction.
 - **Accuracy check** (`tests/test_curves.py`): par yields generated from known Nelson-Siegel zero curves are bootstrapped back to the true zero yields within 0.27 bp at the standard tenors. The residual is interpolation error between the standard tenors.
-- **Negative long-end forwards:** on 134 of 8,506 days, the 6-month forward rate between 29.5 and 30 years falls below -0.10%. All such cases lie beyond 28 years and occur when the 20Y par yield sits well above the 30Y (24 bp at minimum, 34 bp median) (for example, 2009-01-12: 20Y 3.30%, 30Y 2.99%). This reflects the relative illiquidity of the 20-year bond, not a bootstrap error. Zero yields at the standard tenors are unaffected. Do not use forward rates beyond 20 years in the forward-implied benchmark.
+- **Negative long-end forwards:** on 134 of 8,506 days, the 6-month forward rate between 29.5 and 30 years falls below -0.10%. All such cases lie beyond 28 years and occur when the 20Y par yield sits well above the 30Y (24 bp at minimum, 34 bp median; for example, 2009-01-12: 20Y 3.30%, 30Y 2.99%). This reflects the relative illiquidity of the 20-year bond, not a bootstrap error. Zero yields at the standard tenors are unaffected. Do not use forward rates beyond 20 years in the forward-implied benchmark.
 
 ## Overnight reference rates (`overnight_rates.xlsx`)
 
